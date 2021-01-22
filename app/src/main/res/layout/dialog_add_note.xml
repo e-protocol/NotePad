@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<com.google.android.material.textfield.TextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:counterEnabled="true"
+    app:counterMaxLength="20"
+    android:id="@+id/editNoteTitleLayout">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:id="@+id/editNoteTitle"
+        android:maxLength="20"
+        android:background="@color/design_default_color_background"/>
+</com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="200"
+        android:id="@+id/editNoteLayout"
+        android:layout_below="@id/editNoteTitleLayout">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
+        android:id="@+id/editNote"
+        android:layout_below="@id/editNoteTitleLayout"
+        android:maxLength="200"
+        android:background="@color/design_default_color_background"/>
+    </com.google.android.material.textfield.TextInputLayout>
+</RelativeLayout>
