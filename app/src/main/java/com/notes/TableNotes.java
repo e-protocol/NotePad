@@ -4,8 +4,12 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
@@ -60,16 +64,6 @@ public class TableNotes extends MainActivity{
                 }
             });
 
-            //set button
-            ImageButton edit_button = (ImageButton)rowView.findViewById(R.id.button_edit);
-            int finalK = k;
-            edit_button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    editNote(finalK);
-                }
-            });
-
             //set date
             TextView date = (TextView)rowView.findViewById(R.id.date);
             date.setText(notes_list.get(k).getDate());
@@ -119,7 +113,9 @@ public class TableNotes extends MainActivity{
                     updateNotes();
                     saveData();
                     Toast.makeText(this.m_activity, "Deleted", Toast.LENGTH_SHORT).show();
-                });
+                }).setNeutralButton("Cancel", (dialog12, which) ->{
+            Toast.makeText(this.m_activity, "Canceled", Toast.LENGTH_SHORT).show();
+        });
         dialog.create().show();
     }
 
@@ -127,16 +123,38 @@ public class TableNotes extends MainActivity{
     {
         String message = notes_list.get(numberRow).getText();
         String title = notes_list.get(numberRow).getDate() + "  " + notes_list.get(numberRow).getTitle();
+        View dialogView = this.m_activity.getLayoutInflater().inflate(R.layout.dialog_show_note, null);
+        TextView dialogTitle = (TextView)dialogView.findViewById(R.id.dialog_show_title);
+        dialogTitle.setText(title);
+        TextView dialogText = (TextView)dialogView.findViewById(R.id.dialog_show_text);
+        dialogText.setText(message);
+        dialogText.setMovementMethod(new ScrollingMovementMethod());
 
         //MessageBox
         AlertDialog.Builder dialog = new AlertDialog.Builder(this.m_activity);
-        dialog.setTitle(title);
-        dialog.setMessage(message);
+        dialog.setView(dialogView);
         dialog.setCancelable(true);
-        dialog.setPositiveButton("Ok",
-                (dialog1, which) -> {
-                });
-        dialog.create().show();
+        //set button ok
+        Button btnOK = (Button)dialogView.findViewById(R.id.button_ok);
+        AlertDialog mDialog = dialog.create();
+        btnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog.cancel();
+            }
+        });
+
+        //set button
+        ImageButton edit_button = (ImageButton)dialogView.findViewById(R.id.button_edit);
+        int finalK = numberRow;
+        edit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDialog.cancel();
+                editNote(finalK);
+            }
+        });
+        mDialog.show();
     }
 
     @SuppressLint("CommitPrefEdits")

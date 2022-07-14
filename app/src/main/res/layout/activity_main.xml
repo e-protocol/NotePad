@@ -15,7 +15,8 @@
             android:layout_height="wrap_content"
             android:text="Notes"
             android:textSize="25sp"
-            android:gravity="center_horizontal" />
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <ScrollView
@@ -28,7 +29,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:isScrollContainer="true"
-        android:paddingBottom="60dp">
+        android:paddingBottom="60dp"
+        android:layout_marginLeft="20px"
+        android:layout_marginRight="20px">
     </TableLayout>
     </ScrollView>
 

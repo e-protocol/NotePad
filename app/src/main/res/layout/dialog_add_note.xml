@@ -8,21 +8,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:counterEnabled="true"
-    app:counterMaxLength="20"
+    app:counterMaxLength="50"
     android:id="@+id/editNoteTitleLayout">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="50dp"
         android:id="@+id/editNoteTitle"
-        android:maxLength="20"
+        android:maxLength="50"
         android:background="@color/design_default_color_background"/>
 </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:counterEnabled="true"
-        app:counterMaxLength="200"
+        app:counterMaxLength="1000"
         android:id="@+id/editNoteLayout"
         android:layout_below="@id/editNoteTitleLayout">
     <EditText
@@ -31,7 +31,7 @@
         android:minHeight="100dp"
         android:id="@+id/editNote"
         android:layout_below="@id/editNoteTitleLayout"
-        android:maxLength="200"
+        android:maxLength="1000"
         android:background="@color/design_default_color_background"/>
     </com.google.android.material.textfield.TextInputLayout>
 </RelativeLayout>
